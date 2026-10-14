@@ -1,0 +1,27 @@
+{
+  "experiment": "Synthetic regression pilot",
+  "status": "preliminary_single_seed",
+  "condition": {
+    "training_rows": 500,
+    "validation_rows": 2000,
+    "test_rows": 4000,
+    "features": 10,
+    "target_noise": "30% of clean signal standard deviation",
+    "seed": 0
+  },
+  "metric": "RMSE",
+  "official_tabm_commit": "28e47ae301c92ec37787dde1ce923a0793f405b4",
+  "hyperparameter_note": "Published California Housing configurations were transferred without synthetic-dataset-specific tuning.",
+  "mlp": {
+    "test_rmse": 1.854261917353693,
+    "test_r2": 0.8462717785081628,
+    "training_time": "0:00:02.481011"
+  },
+  "tabm": {
+    "test_rmse": 1.6765269507685947,
+    "test_r2": 0.874329729943157,
+    "training_time": "0:00:11.457860"
+  },
+  "tabm_rmse_improvement_percent": 9.585213659500294,
+  "interpretation": "TabM achieved lower RMSE than MLP in this small, noisy synthetic condition. This is preliminary single-seed evidence and does not establish a general trend across sample sizes or noise levels."
+}
