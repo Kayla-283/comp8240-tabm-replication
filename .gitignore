@@ -218,3 +218,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# COMP8240 project data
+data/raw/
+data/processed/
+
+# Generated NumPy dataset arrays
+*.npy
+
+# Jupyter temporary files
+.ipynb_checkpoints/
