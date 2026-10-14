@@ -1,0 +1,28 @@
+{
+  "experiment": "Tetouan Zone 1 pilot comparison",
+  "status": "preliminary_single_seed",
+  "seed": 0,
+  "target": "Zone 1 Power Consumption",
+  "metric": "RMSE",
+  "split": "chronological 64/16/20",
+  "official_tabm_commit": "28e47ae301c92ec37787dde1ce923a0793f405b4",
+  "environment": {
+    "python": "3.10.12",
+    "pytorch": "2.0.1",
+    "cuda": "11.8",
+    "gpu": "Tesla T4"
+  },
+  "hyperparameter_note": "Published California Housing MLP and TabM configurations were transferred to Tetouan without dataset-specific tuning.",
+  "mlp": {
+    "test_rmse": 4423.998643761093,
+    "test_r2": 0.48528249788324285,
+    "training_time": "0:00:20.957723"
+  },
+  "tabm": {
+    "test_rmse": 4723.173085966679,
+    "test_r2": 0.4133126688767065,
+    "training_time": "0:00:50.044156"
+  },
+  "tabm_rmse_change_percent_vs_mlp": -6.762534672733085,
+  "interpretation": "TabM did not outperform MLP in this preliminary single-seed pilot. No final conclusion should be drawn without Tetouan-specific tuning and repeated seeds."
+}

@@ -64,3 +64,33 @@ Important changes/decisions to mention:
 4. DateTime was converted into cyclical numerical features.
 5. A chronological split was used because observations are time ordered.
 6. The final prepared dataset contains 11 numerical predictors.
+
+
+## Preliminary MLP vs TabM pilot result
+
+Both models were trained using the authors' official TabM experiment pipeline,
+seed 0 and the same chronological Tetouan split.
+
+Published California Housing hyperparameters were transferred directly to
+Tetouan without dataset-specific tuning.
+
+### Results
+- MLP test RMSE: 4424.00
+- MLP test R²: 0.4853
+- MLP training time: 20.96 seconds
+- TabM test RMSE: 4723.17
+- TabM test R²: 0.4133
+- TabM training time: 50.04 seconds
+- TabM RMSE was 6.76% higher (worse) than MLP in this pilot.
+
+### Interpretation
+This preliminary single-seed result does not reproduce TabM's advantage over
+the MLP on Tetouan.
+
+Possible explanations to investigate later include:
+- dataset-specific behaviour,
+- chronological distribution shift,
+- and transferring California-tuned hyperparameters without Tetouan-specific tuning.
+
+No final conclusion should be drawn until additional tuning and repeated-seed
+experiments are performed.
