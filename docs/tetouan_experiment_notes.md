@@ -1,96 +1,48 @@
 # Tetouan Experiment Notes
 
 ## Dataset
-- Dataset: Power Consumption of Tetouan City
-- Source: UCI Machine Learning Repository
-- Proposed observation count: 52,417
-- Actual observations loaded through UCI: 52,416
-- Actual date range: 2017-01-01 00:00 to 2017-12-30 23:50
-- Observations occur every 10 minutes.
-- No missing values were found.
-- No duplicate timestamps were found.
 
-## Prediction task
-- Task type: regression
-- Selected target: Zone 1 Power Consumption
-- Zone 2 and Zone 3 Power Consumption are excluded from the predictors.
-- Evaluation metric: RMSE.
+Power Consumption of Tetouan City, UCI Machine Learning Repository.
 
-## Original predictors
-The UCI dataset provides:
-- DateTime
-- Temperature
-- Humidity
-- Wind Speed
-- general diffuse flows
-- diffuse flows
+Actual downloaded observations: 52,416.
 
-## DateTime preprocessing
-Raw DateTime is not supplied directly to the neural network.
+Zone 1 Power Consumption is used as the regression target. Zone 2 and Zone 3
+are excluded from the predictors.
 
-It is transformed into:
-- time_sin
-- time_cos
-- weekday_sin
-- weekday_cos
-- year_sin
-- year_cos
+DateTime is transformed into cyclical representations of:
 
-Together with the five environmental variables, this produces 11 numerical model predictors.
+- time of day;
+- day of week; and
+- position within the year.
 
-This cyclical encoding is a preprocessing decision made for the new-data extension and is not part of the original California Housing experiment.
+Together with the five environmental measurements, the processed dataset has
+11 numerical predictors.
 
-## Data split
-A chronological split is used instead of a random split to respect the time-ordered structure.
+## Split
 
-- Training: 33,546 rows (64%)
-  - 2017-01-01 00:00 to 2017-08-21 22:50
-- Validation: 8,386 rows (16%)
-  - 2017-08-21 23:00 to 2017-10-19 04:30
-- Test: 10,484 rows (20%)
-  - 2017-10-19 04:40 to 2017-12-30 23:50
+A chronological split is used:
 
-## TabM preparation
-- Arrays are saved as float32.
-- Generated arrays are stored under data/processed/ and are not committed to Git.
-- The preparation script recreates the processed dataset from the original UCI source.
-- Predictor arrays are saved before model-specific numerical preprocessing so that MLP and TabM can use the same downstream preprocessing pipeline.
+- Train: 33,546 observations (64%)
+- Validation: 8,386 observations (16%)
+- Test: 10,484 observations (20%)
 
-## Presentation points
-Important changes/decisions to mention:
-1. The downloaded dataset contains 52,416 rows rather than the 52,417 stated in the proposal.
-2. Zone 1 was selected as the single regression target.
-3. The other two zone-consumption variables were excluded as predictors.
-4. DateTime was converted into cyclical numerical features.
-5. A chronological split was used because observations are time ordered.
-6. The final prepared dataset contains 11 numerical predictors.
+## Experimental design
 
+The released California Housing MLP and TabM configurations are transferred to
+Tetouan without Tetouan-specific hyperparameter optimisation.
 
-## Preliminary MLP vs TabM pilot result
+Three model seeds are evaluated.
 
-Both models were trained using the authors' official TabM experiment pipeline,
-seed 0 and the same chronological Tetouan split.
+## Final results
 
-Published California Housing hyperparameters were transferred directly to
-Tetouan without dataset-specific tuning.
+| Model | Seed 0 | Seed 1 | Seed 2 | Mean ± SD |
+|---|---:|---:|---:|---:|
+| MLP | 4424.00 | 4881.65 | 4951.03 | 4752.23 ± 286.36 |
+| TabM | 4723.17 | 5052.40 | 4745.69 | 4840.42 ± 183.92 |
 
-### Results
-- MLP test RMSE: 4424.00
-- MLP test R²: 0.4853
-- MLP training time: 20.96 seconds
-- TabM test RMSE: 4723.17
-- TabM test R²: 0.4133
-- TabM training time: 50.04 seconds
-- TabM RMSE was 6.76% higher (worse) than MLP in this pilot.
+TabM's mean RMSE is approximately 1.86% higher than MLP.
 
-### Interpretation
-This preliminary single-seed result does not reproduce TabM's advantage over
-the MLP on Tetouan.
-
-Possible explanations to investigate later include:
-- dataset-specific behaviour,
-- chronological distribution shift,
-- and transferring California-tuned hyperparameters without Tetouan-specific tuning.
-
-No final conclusion should be drawn until additional tuning and repeated-seed
-experiments are performed.
+The direction is not consistent across seeds: MLP performs better for seeds 0
+and 1, while TabM performs better for seed 2. The result is therefore treated
+as evidence that the strong California Housing advantage does not
+automatically transfer to this dataset under the transferred configurations.

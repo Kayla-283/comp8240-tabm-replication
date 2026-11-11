@@ -1,56 +1,69 @@
 # Synthetic Regression Experiment Notes
 
-## Construction
-- Synthetic tabular regression data were generated using a reproducible Python script.
-- 10 numerical predictors were generated from a fixed random process.
-- A fixed nonlinear generating function defines the clean continuous target.
-- The underlying relationship is kept constant across experimental conditions.
-- Random seed for data construction: 42.
+## Purpose
 
-## Controlled conditions
-Training-set size:
+The synthetic experiment tests the MLP–TabM comparison under controlled
+changes in training-set size and target noise while holding the generating
+relationship fixed.
+
+## Generating process
+
+Ten predictors are sampled independently from a standard normal distribution.
+
+The clean target is:
+
+y = 3*x0 - 2*x1 + 1.5*x2*x3 + 2*sin(x4) + 0.8*x5^2 - 1.2*x6
+
+Predictors x7, x8 and x9 do not contribute to the target.
+
+Construction seed: 42.
+
+## Conditions
+
+Training sizes:
+
 - 500
 - 2,000
 - 8,000
 
-Target noise:
+Target-noise levels:
+
 - 0%
 - 10%
-- 30% of the clean signal standard deviation
+- 30% of clean signal standard deviation
 
-This creates nine sample-size × noise conditions from the same underlying generating process.
+This gives nine total conditions.
 
-## Pilot condition tested for Project Update
-- Training observations: 500
-- Validation observations: 2,000
-- Test observations: 4,000
-- Target noise: 30%
-- Model seed: 0
-- Metric: RMSE
+Validation size: 2,000.
 
-## Preliminary result
-- MLP test RMSE: 1.8543
-- MLP test R²: 0.8463
-- MLP training time: 2.48 seconds
-- TabM test RMSE: 1.6765
-- TabM test R²: 0.8743
-- TabM training time: 11.46 seconds
-- TabM achieved 9.59% lower RMSE than MLP.
+Test size: 4,000.
 
-## Interpretation
-The preliminary result is consistent with the possibility that TabM's
-parameter-efficient ensemble may help under a small and noisy data condition.
+Gaussian target noise is applied to the training, validation and test targets
+for each noisy condition.
 
-However, this is only one condition and one model seed. The remaining
-sample-size/noise conditions and repeated seeds are required before making
-a final claim about the relationship between noise, data availability and
-TabM's advantage.
+## Experimental design
 
-## Important Project Update comparison
-The new-data experiments currently show different behaviour:
+California Housing MLP and TabM configurations are transferred without
+synthetic-specific hyperparameter optimisation.
 
-- Tetouan real dataset: TabM RMSE was 6.76% worse than MLP.
-- Synthetic n=500, 30% noise: TabM RMSE was 9.59% better than MLP.
+Each condition is evaluated using three model seeds.
 
-This contrast motivates the continuing research question: under what data
-conditions does parameter-efficient ensembling provide a meaningful benefit?
+## Final results
+
+| Train size | Noise | MLP RMSE | TabM RMSE | TabM improvement |
+|---:|---:|---:|---:|---:|
+| 500 | 0% | 1.0176 | 0.6973 | 31.47% |
+| 500 | 10% | 1.1123 | 0.8387 | 24.60% |
+| 500 | 30% | 1.8534 | 1.6879 | 8.93% |
+| 2,000 | 0% | 0.5832 | 0.4136 | 29.08% |
+| 2,000 | 10% | 0.7742 | 0.6352 | 17.96% |
+| 2,000 | 30% | 1.5612 | 1.4762 | 5.45% |
+| 8,000 | 0% | 0.3401 | 0.2385 | 29.88% |
+| 8,000 | 10% | 0.5955 | 0.5144 | 13.61% |
+| 8,000 | 30% | 1.4792 | 1.4275 | 3.50% |
+
+TabM achieves lower mean RMSE in all nine conditions.
+
+Its relative advantage decreases consistently as target noise increases. The
+strongest gains occur in the clean-target conditions, while the difference
+becomes much smaller at 30% target noise.
