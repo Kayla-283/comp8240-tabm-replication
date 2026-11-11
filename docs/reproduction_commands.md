@@ -1,158 +1,131 @@
 # Reproduction Commands
 
-This document records the environment, data-preparation and model-running workflow used for the COMP8240 TabM replication and extension project.
+This document records the environment and commands used to reproduce the COMP8240 TabM replication and extension experiments.
 
 ## 1. Official TabM implementation
 
-Official repository:
+The experiments use the authors' official repository:
 
 https://github.com/yandex-research/tabm
 
-Fixed commit:
+The repository was fixed to commit:
 
 `28e47ae301c92ec37787dde1ce923a0793f405b4`
 
-The main model implementation used for both MLP and TabM is:
+The MLP and TabM models are trained using the authors' original:
 
-`bin/model.py`
+`paper/bin/model.py`
+
+implementation.
 
 ## 2. Experimental environment
 
-Experiments were run in Google Colab using:
+The main experiments were run in Google Colab using:
 
 - Python 3.10.12
 - PyTorch 2.0.1
 - CUDA 11.8
-- NVIDIA Tesla T4 GPU
+- NVIDIA Tesla T4
 
-An isolated environment was used because the default Colab software stack was newer than the versions expected by the released repository.
+The TabM environment used in Colab was located at:
 
-## 3. California Housing replication
+`/content/tabm-env`
 
-California Housing uses the original prepared benchmark data and released model configurations from the official TabM repository.
+The official TabM repository was located at:
 
-The objective was to reproduce the reported MLP-versus-TabM comparison without repeating the original hyperparameter search.
+`/content/tabm`
 
-The official `bin/model.py` training pipeline was used with the released California Housing configurations for MLP and TabM across five seeds.
+## 3. Experiment runner
 
-Final replication results:
+This repository provides:
 
-- MLP: 0.4939 ± 0.0055 RMSE
-- TabM: 0.4416 ± 0.0021 RMSE
+`scripts/run_experiments.py`
 
-Published results:
+The script wraps the official TabM training pipeline and provides reproducible commands for the experiments used in the report.
 
-- MLP: 0.4948 ± 0.0058 RMSE
-- TabM: 0.4414 ± 0.0012 RMSE
+### California Housing replication
 
-Saved summary:
+```bash
+python scripts/run_experiments.py california \
+  --tabm-paper-dir /content/tabm/paper \
+  --micromamba-prefix /content/tabm-env
+```
 
-`results/california_5seed_results.json`
+This evaluates MLP and TabM across five seeds using the released California Housing configurations.
 
-## 4. Tetouan City Power Consumption
+### Tetouan City Power Consumption
 
-Prepare the dataset with:
+```bash
+python scripts/run_experiments.py tetouan \
+  --tabm-paper-dir /content/tabm/paper \
+  --micromamba-prefix /content/tabm-env
+```
 
-`python scripts/prepare_tetouan.py`
+The runner first executes:
 
-The script:
+`scripts/prepare_tetouan.py`
 
-- downloads the UCI Tetouan dataset;
-- selects Zone 1 Power Consumption as the regression target;
-- excludes Zone 2 and Zone 3 from predictors;
-- converts DateTime into daily, weekly and yearly cyclical features;
-- produces 11 numerical predictors;
-- creates a chronological 64% / 16% / 20% split.
+to recreate the processed Tetouan dataset and then evaluates MLP and TabM across three seeds.
 
-Final split sizes:
+The California Housing configurations are transferred without Tetouan-specific hyperparameter optimisation.
 
-- Train: 33,546
-- Validation: 8,386
-- Test: 10,484
+### Synthetic regression
 
-The released California Housing MLP and TabM configurations were transferred to Tetouan without Tetouan-specific hyperparameter optimisation.
+```bash
+python scripts/run_experiments.py synthetic \
+  --tabm-paper-dir /content/tabm/paper \
+  --micromamba-prefix /content/tabm-env
+```
 
-Three model seeds were evaluated.
+The runner first executes:
 
-Final mean RMSE:
+`scripts/generate_synthetic_regression.py`
 
-- MLP: 4752.23 ± 286.36
-- TabM: 4840.42 ± 183.92
+to recreate the nine synthetic dataset conditions and then evaluates MLP and TabM across three seeds for each condition.
 
-Relevant files:
+The California Housing configurations are transferred without synthetic-specific hyperparameter optimisation.
 
-- `scripts/prepare_tetouan.py`
-- `docs/tetouan_experiment_notes.md`
-- `results/`
+### Run all experiments
 
-## 5. Synthetic regression experiment
+```bash
+python scripts/run_experiments.py all \
+  --tabm-paper-dir /content/tabm/paper \
+  --micromamba-prefix /content/tabm-env
+```
 
-Generate the datasets with:
+## 4. Dataset preparation only
 
-`python scripts/generate_synthetic_regression.py`
+Tetouan:
 
-Training sizes:
+```bash
+python scripts/prepare_tetouan.py
+```
 
-- 500
-- 2,000
-- 8,000
+Synthetic regression:
 
-Target noise:
+```bash
+python scripts/generate_synthetic_regression.py
+```
 
-- 0%
-- 10%
-- 30% of clean signal standard deviation
+Large generated arrays are excluded from Git and can be recreated using these scripts.
 
-Clean regression function:
+## 5. Saved results
 
-`y = 3*x0 - 2*x1 + 1.5*x2*x3 + 2*sin(x4) + 0.8*x5^2 - 1.2*x6`
+Final experiment summaries are stored under:
 
-Construction seed:
+`results/`
 
-`42`
+This includes:
 
-Validation size:
+- California Housing five-seed replication results
+- Tetouan three-seed results
+- synthetic three-seed experiment results
+- supplementary LLM-as-judge prompts and evaluation results
 
-`2,000`
+## 6. Reproducibility scope
 
-Test size:
+The project uses the authors' official model implementation rather than copying or reimplementing TabM.
 
-`4,000`
+For Tetouan and synthetic experiments, the released California Housing configurations are deliberately transferred to the new datasets.
 
-California Housing MLP and TabM configurations were transferred without synthetic-specific hyperparameter optimisation.
-
-Each condition was evaluated using three model seeds.
-
-Relevant files:
-
-- `scripts/generate_synthetic_regression.py`
-- `docs/synthetic_experiment_notes.md`
-- `results/`
-
-## 6. LLM-as-judge evaluation
-
-The LLM-as-judge analysis is supplementary and does not replace RMSE.
-
-Twelve California Housing test cases were selected using the largest absolute disagreement between the seed-0 MLP and TabM predictions.
-
-The true target and model identities were hidden from the judge.
-
-Each case was evaluated twice:
-
-1. original A/B ordering;
-2. reversed A/B ordering.
-
-Final summary:
-
-- Original-order accuracy: 66.7%
-- Reversed-order accuracy: 58.3%
-- Position consistency: 75.0%
-- Position-sensitive cases: 3/12
-
-The corresponding prompts and results are stored in `results/`.
-
-## 7. Reproducibility notes
-
-Large generated NumPy arrays are excluded from Git and can be recreated using the supplied preparation scripts.
-
-The transferred configurations are not claimed to be optimal for Tetouan or the synthetic datasets. They are used to test how the released California Housing configurations transfer to new data under a controlled setup.
+The project does not claim that these configurations are optimal for the new datasets. Their purpose is to evaluate how the released configuration transfers under different real-world and controlled synthetic conditions.
