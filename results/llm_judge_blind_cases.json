@@ -1,0 +1,194 @@
+[
+  {
+    "case_id": 1,
+    "test_index": 1902,
+    "features": {
+      "MedInc": 0.4999000132083893,
+      "HouseAge": 29.0,
+      "AveRooms": 2.373271942138672,
+      "AveBedrms": 1.0552995204925537,
+      "Population": 2690.0,
+      "AveOccup": 12.396313667297363,
+      "Latitude": 34.02000045776367,
+      "Longitude": -118.27999877929688
+    },
+    "prediction_A_dollars": 84431.29,
+    "prediction_B_dollars": 365346.96
+  },
+  {
+    "case_id": 2,
+    "test_index": 527,
+    "features": {
+      "MedInc": 8.361700057983398,
+      "HouseAge": 52.0,
+      "AveRooms": 5.516129016876221,
+      "AveBedrms": 0.9314516186714172,
+      "Population": 737.0,
+      "AveOccup": 2.971774101257324,
+      "Latitude": 34.060001373291016,
+      "Longitude": -118.33000183105469
+    },
+    "prediction_A_dollars": 447995.81,
+    "prediction_B_dollars": 332077.55
+  },
+  {
+    "case_id": 3,
+    "test_index": 2272,
+    "features": {
+      "MedInc": 15.000100135803223,
+      "HouseAge": 46.0,
+      "AveRooms": 6.0,
+      "AveBedrms": 0.800000011920929,
+      "Population": 13.0,
+      "AveOccup": 2.5999999046325684,
+      "Latitude": 37.5,
+      "Longitude": -122.13999938964844
+    },
+    "prediction_A_dollars": 500959.63,
+    "prediction_B_dollars": 390150.64
+  },
+  {
+    "case_id": 4,
+    "test_index": 2201,
+    "features": {
+      "MedInc": 2.625,
+      "HouseAge": 20.0,
+      "AveRooms": 6.315789699554443,
+      "AveBedrms": 1.4210525751113892,
+      "Population": 55.0,
+      "AveOccup": 2.8947367668151855,
+      "Latitude": 37.72999954223633,
+      "Longitude": -122.37999725341797
+    },
+    "prediction_A_dollars": 275195.41,
+    "prediction_B_dollars": 169940.67
+  },
+  {
+    "case_id": 5,
+    "test_index": 1096,
+    "features": {
+      "MedInc": 3.1410000324249268,
+      "HouseAge": 27.0,
+      "AveRooms": 4.449999809265137,
+      "AveBedrms": 1.4450000524520874,
+      "Population": 416.0,
+      "AveOccup": 2.0799999237060547,
+      "Latitude": 33.869998931884766,
+      "Longitude": -117.95999908447266
+    },
+    "prediction_A_dollars": 310056.07,
+    "prediction_B_dollars": 215313.53
+  },
+  {
+    "case_id": 6,
+    "test_index": 2811,
+    "features": {
+      "MedInc": 3.2021000385284424,
+      "HouseAge": 45.0,
+      "AveRooms": 5.281436920166016,
+      "AveBedrms": 1.2005988359451294,
+      "Population": 679.0,
+      "AveOccup": 2.0329341888427734,
+      "Latitude": 33.9900016784668,
+      "Longitude": -118.3499984741211
+    },
+    "prediction_A_dollars": 267761.11,
+    "prediction_B_dollars": 358606.51
+  },
+  {
+    "case_id": 7,
+    "test_index": 3812,
+    "features": {
+      "MedInc": 14.411299705505371,
+      "HouseAge": 28.0,
+      "AveRooms": 11.634686470031738,
+      "AveBedrms": 1.5092251300811768,
+      "Population": 569.0,
+      "AveOccup": 2.0996310710906982,
+      "Latitude": 36.56999969482422,
+      "Longitude": -121.94000244140625
+    },
+    "prediction_A_dollars": 515538.79,
+    "prediction_B_dollars": 426509.86
+  },
+  {
+    "case_id": 8,
+    "test_index": 3318,
+    "features": {
+      "MedInc": 4.889999866485596,
+      "HouseAge": 52.0,
+      "AveRooms": 6.0606794357299805,
+      "AveBedrms": 0.9854369163513184,
+      "Population": 1030.0,
+      "AveOccup": 2.5,
+      "Latitude": 34.06999969482422,
+      "Longitude": -118.3499984741211
+    },
+    "prediction_A_dollars": 456211.9,
+    "prediction_B_dollars": 367425.35
+  },
+  {
+    "case_id": 9,
+    "test_index": 566,
+    "features": {
+      "MedInc": 1.9666999578475952,
+      "HouseAge": 2.0,
+      "AveRooms": 5.715976238250732,
+      "AveBedrms": 1.5976331233978271,
+      "Population": 233.0,
+      "AveOccup": 1.3786982297897339,
+      "Latitude": 34.41999816894531,
+      "Longitude": -118.55999755859375
+    },
+    "prediction_A_dollars": 165886.96,
+    "prediction_B_dollars": 253477.07
+  },
+  {
+    "case_id": 10,
+    "test_index": 2012,
+    "features": {
+      "MedInc": 4.878699779510498,
+      "HouseAge": 33.0,
+      "AveRooms": 6.104602336883545,
+      "AveBedrms": 1.0334727764129639,
+      "Population": 1365.0,
+      "AveOccup": 2.8556485176086426,
+      "Latitude": 34.70000076293945,
+      "Longitude": -118.16000366210938
+    },
+    "prediction_A_dollars": 145610.13,
+    "prediction_B_dollars": 230324.55
+  },
+  {
+    "case_id": 11,
+    "test_index": 2273,
+    "features": {
+      "MedInc": 4.2916998863220215,
+      "HouseAge": 52.0,
+      "AveRooms": 6.329545497894287,
+      "AveBedrms": 0.9602272510528564,
+      "Population": 486.0,
+      "AveOccup": 2.7613637447357178,
+      "Latitude": 34.0,
+      "Longitude": -118.33000183105469
+    },
+    "prediction_A_dollars": 310927.65,
+    "prediction_B_dollars": 226561.43
+  },
+  {
+    "case_id": 12,
+    "test_index": 1067,
+    "features": {
+      "MedInc": 3.948899984359741,
+      "HouseAge": 21.0,
+      "AveRooms": 4.753794193267822,
+      "AveBedrms": 1.092748761177063,
+      "Population": 1435.0,
+      "AveOccup": 2.419898748397827,
+      "Latitude": 34.040000915527344,
+      "Longitude": -118.44999694824219
+    },
+    "prediction_A_dollars": 390780.14,
+    "prediction_B_dollars": 308178.38
+  }
+]

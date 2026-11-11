@@ -1,0 +1,189 @@
+
+You are evaluating two candidate predictions for the median house value
+of a California census block group.
+
+For each case:
+1. Examine the eight supplied housing features.
+2. Compare Prediction A and Prediction B.
+3. Choose which prediction appears more plausible given the features.
+4. Do not assume that A or B comes from a better model.
+5. Do not prefer a prediction because it is listed first.
+6. If the evidence is genuinely insufficient to distinguish them, choose Tie.
+
+Median income (MedInc) is expressed in tens of thousands of dollars.
+The predicted house values are shown directly in US dollars.
+
+Return one line per case using exactly:
+Case <number>: A
+Case <number>: B
+or
+Case <number>: Tie
+
+Do not provide the true value because it has not been supplied.
+
+Case 1
+MedInc: 0.4999
+HouseAge: 29.00
+AveRooms: 2.3733
+AveBedrms: 1.0553
+Population: 2690
+AveOccup: 12.3963
+Latitude: 34.0200
+Longitude: -118.2800
+
+Prediction A: $365,346.96
+Prediction B: $84,431.29
+
+
+Case 2
+MedInc: 8.3617
+HouseAge: 52.00
+AveRooms: 5.5161
+AveBedrms: 0.9315
+Population: 737
+AveOccup: 2.9718
+Latitude: 34.0600
+Longitude: -118.3300
+
+Prediction A: $332,077.55
+Prediction B: $447,995.81
+
+
+Case 3
+MedInc: 15.0001
+HouseAge: 46.00
+AveRooms: 6.0000
+AveBedrms: 0.8000
+Population: 13
+AveOccup: 2.6000
+Latitude: 37.5000
+Longitude: -122.1400
+
+Prediction A: $390,150.64
+Prediction B: $500,959.63
+
+
+Case 4
+MedInc: 2.6250
+HouseAge: 20.00
+AveRooms: 6.3158
+AveBedrms: 1.4211
+Population: 55
+AveOccup: 2.8947
+Latitude: 37.7300
+Longitude: -122.3800
+
+Prediction A: $169,940.67
+Prediction B: $275,195.41
+
+
+Case 5
+MedInc: 3.1410
+HouseAge: 27.00
+AveRooms: 4.4500
+AveBedrms: 1.4450
+Population: 416
+AveOccup: 2.0800
+Latitude: 33.8700
+Longitude: -117.9600
+
+Prediction A: $215,313.53
+Prediction B: $310,056.07
+
+
+Case 6
+MedInc: 3.2021
+HouseAge: 45.00
+AveRooms: 5.2814
+AveBedrms: 1.2006
+Population: 679
+AveOccup: 2.0329
+Latitude: 33.9900
+Longitude: -118.3500
+
+Prediction A: $358,606.51
+Prediction B: $267,761.11
+
+
+Case 7
+MedInc: 14.4113
+HouseAge: 28.00
+AveRooms: 11.6347
+AveBedrms: 1.5092
+Population: 569
+AveOccup: 2.0996
+Latitude: 36.5700
+Longitude: -121.9400
+
+Prediction A: $426,509.86
+Prediction B: $515,538.79
+
+
+Case 8
+MedInc: 4.8900
+HouseAge: 52.00
+AveRooms: 6.0607
+AveBedrms: 0.9854
+Population: 1030
+AveOccup: 2.5000
+Latitude: 34.0700
+Longitude: -118.3500
+
+Prediction A: $367,425.35
+Prediction B: $456,211.90
+
+
+Case 9
+MedInc: 1.9667
+HouseAge: 2.00
+AveRooms: 5.7160
+AveBedrms: 1.5976
+Population: 233
+AveOccup: 1.3787
+Latitude: 34.4200
+Longitude: -118.5600
+
+Prediction A: $253,477.07
+Prediction B: $165,886.96
+
+
+Case 10
+MedInc: 4.8787
+HouseAge: 33.00
+AveRooms: 6.1046
+AveBedrms: 1.0335
+Population: 1365
+AveOccup: 2.8556
+Latitude: 34.7000
+Longitude: -118.1600
+
+Prediction A: $230,324.55
+Prediction B: $145,610.13
+
+
+Case 11
+MedInc: 4.2917
+HouseAge: 52.00
+AveRooms: 6.3295
+AveBedrms: 0.9602
+Population: 486
+AveOccup: 2.7614
+Latitude: 34.0000
+Longitude: -118.3300
+
+Prediction A: $226,561.43
+Prediction B: $310,927.65
+
+
+Case 12
+MedInc: 3.9489
+HouseAge: 21.00
+AveRooms: 4.7538
+AveBedrms: 1.0927
+Population: 1435
+AveOccup: 2.4199
+Latitude: 34.0400
+Longitude: -118.4500
+
+Prediction A: $308,178.38
+Prediction B: $390,780.14
