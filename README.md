@@ -29,9 +29,7 @@ The main experimental environment used in Google Colab was:
 
 The official TabM training pipeline was used rather than reimplementing the models.
 
-The main model implementation used for both MLP and TabM is:
-
-`bin/model.py`
+The MLP and TabM models are trained using the authors’ original paper/bin/model.py implementation from the official Yandex Research TabM repository at commit 28e47ae301c92ec37787dde1ce923a0793f405b4.
 
 ## Repository structure
 
