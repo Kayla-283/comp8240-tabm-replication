@@ -1,4 +1,4 @@
-```markdown
+
 # COMP8240 TabM Replication and Extension
 
 This repository contains the code, experiment records and results for my COMP8240 Applications of Data Science project reproducing and extending:
@@ -141,16 +141,4 @@ The model experiments depend on the official TabM codebase and released configur
 Thi Kieu Ngan Nguyen  
 Macquarie University  
 COMP8240 — Applications of Data Science
-```
 
-### One other important file
-
-We should add a `results/california_5seed_results.json` because **this is the only major experimental result in your report currently unsupported by a result file in the repo**.
-
-Also, your earlier final summary CSVs and `figures/synthetic_noise_improvement.png` were **not committed into this ZIP**. They are not essential, but adding them would make the repo noticeably stronger.
-
-**Do the README first and commit it with:**
-
-`Improve README with reproduction instructions and final results`
-
-Then I’ll give you the exact California result file and the small updates for the two outdated docs.
